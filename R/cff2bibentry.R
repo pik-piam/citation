@@ -8,6 +8,7 @@
 #' @export
 
 cff2bibentry <- function(x) {
+  if(is.null(x)) return(x)
   if(is.character(x) && file.exists(x)) x <- read_cff(x)
   #convert authors
   authors <- list()
