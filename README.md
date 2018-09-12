@@ -2,8 +2,7 @@
 
 ## Purpose and Functionality
 
-The package is a collection of functions to extract citation information from R packages, extending the functionality already
-provided by the citation function in the utils package.
+The package is a collection of functions for handling citations in R. Besides read and write support for the citation file format (https://citation-file-format.github.io/) it provides tools to extracts citation information from R packages, extending the functionality already provided by the citation function in the utils package.
 
 ## Installation
 
