@@ -8,7 +8,7 @@
 #' @export
 
 read_cff <- function(file) {
-  cff <- read_yaml(file)
+  cff <- read_yaml(file, fileEncoding="")
   if(is.numeric(cff$version)) cff$version <- format(cff$version,nsmall=1)
   return(cff)
 }
