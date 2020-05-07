@@ -2,8 +2,7 @@
   "title": "citation: Software citation tools",
   "version": "0.2.2",
   "license": "BSD_2_clause",
-  "description": "<p>A collection of functions to extract citation information from R packages, extending the functionality already provided by the citation function in the utils package.<\/p>",
-  "creators": [
+   "creators": [
     {
       "name": "Dietrich, Jan Philipp"
     }
