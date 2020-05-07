@@ -15,7 +15,7 @@
 #' 
 #' package2zenodo("citation")
 #' 
-package2zenodo <- function(package) {
+package2zenodo <- function(package=".") {
   if(file.exists(paste0(package,"/DESCRIPTION"))) {
     d <- desc(file=paste0(package,"/DESCRIPTION"))
     folder <- package
@@ -28,7 +28,6 @@ package2zenodo <- function(package) {
                      braces = list(family = c("", ",")))
   json <- list(title=paste0(d$get("Package"),": ",d$get("Title")),
                version=d$get("Version"),
-               license=sub(" + file LICENSE","",d$get("License"),fixed=TRUE),
                description=paste0("<p>",d$get("Description"),"</p>"),
                creators=lapply(authors,function(x) return(list(name=x))))
   
