@@ -1,8 +1,8 @@
 Package: citation
 Type: Package
 Title: Software citation tools
-Version: 0.3.1
-Date: 2020-05-07
+Version: 0.4.0
+Date: 2020-05-12
 Authors@R: c(person("Jan Philipp", "Dietrich", email = "dietrich@pik-potsdam.de", role = c("aut","cre")))
 Description: A collection of functions to extract citation information from R packages, extending the functionality already provided by the citation function in the utils package.
 Imports: utils, yaml, jsonlite, desc
@@ -12,4 +12,4 @@ License: BSD_2_clause + file LICENSE
 Encoding: UTF-8
 LazyData: yes
 RoxygenNote: 7.1.0
-ValidationKey: 570059
+ValidationKey: 735760
