@@ -6,10 +6,12 @@
 #' auto-generate from the repository. 
 #' 
 #' @param package either the path to the main folder of a package (containing a DESCRIPTION file)
-#' or the name of the package
+#' or the name of the package. If a path is provided the .zenodo.json file will be directly added
+#' to the folder. Otherwise the content of such a file is just returned.
 #' @author Jan Philipp Dietrich
 #' @importFrom jsonlite toJSON
 #' @importFrom desc desc
+#' @return The metadata information that should be provided to Zenodo in JSON format.
 #' @export
 #' @examples
 #' 
