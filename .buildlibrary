@@ -5,4 +5,4 @@ AcceptedWarnings:
 - 'Warning: namespace ''.*'' is not available and has been replaced'
 AcceptedNotes: ~
 allowLinterWarnings: yes
-UseGithubActions: yes
+UseGithubActions: no
