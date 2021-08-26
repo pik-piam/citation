@@ -1,12 +1,12 @@
 # Software Citation Tools
 
-R package **citation**, version **0.4.1**
+R package **citation**, version **0.5.0**
 
-[![Travis build status](https://travis-ci.com/pik-piam/citation.svg?branch=master)](https://travis-ci.com/pik-piam/citation) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3813429.svg)](https://doi.org/10.5281/zenodo.3813429) 
+[![CRAN status](https://www.r-pkg.org/badges/version/citation)](https://cran.r-project.org/package=citation) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3813429.svg)](https://doi.org/10.5281/zenodo.3813429)  [![R build status](https://github.com/pik-piam/citation/workflows/check/badge.svg)](https://github.com/pik-piam/citation/actions) [![codecov](https://codecov.io/gh/pik-piam/citation/branch/master/graph/badge.svg)](https://codecov.io/gh/pik-piam/citation)
 
 ## Purpose and Functionality
 
-A collection of functions to extract citation information from R packages and to deal with files in citation file format (<https://citation-file-format.github.io/>), extending the functionality already provided by the citation function in the utils package.
+A collection of functions to extract citation information from 'R' packages and to deal with files in 'citation file format' (<https://citation-file-format.github.io/>), extending the functionality already provided by the citation() function in the 'utils' package.
 
 
 ## Installation
@@ -38,18 +38,16 @@ In case of questions / problems please contact Jan Philipp Dietrich <dietrich@pi
 
 To cite package **citation** in publications use:
 
-Dietrich J (2020). _citation: Software Citation Tools_. doi: 10.5281/zenodo.3813429 (URL:
-https://doi.org/10.5281/zenodo.3813429), R package version 0.4.1, <URL:
-https://github.com/pik-piam/citation>.
+Dietrich J, Leoncio W (2021). _citation: Software Citation Tools_. doi: 10.5281/zenodo.3813429 (URL: https://doi.org/10.5281/zenodo.3813429), R package version 0.5.0, <URL: https://github.com/pik-piam/citation>.
 
 A BibTeX entry for LaTeX users is
 
  ```latex
 @Manual{,
   title = {citation: Software Citation Tools},
-  author = {Jan Philipp Dietrich},
-  year = {2020},
-  note = {R package version 0.4.1},
+  author = {Jan Philipp Dietrich and Waldir Leoncio},
+  year = {2021},
+  note = {R package version 0.5.0},
   doi = {10.5281/zenodo.3813429},
   url = {https://github.com/pik-piam/citation},
 }
