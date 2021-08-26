@@ -31,7 +31,7 @@ r2cff <- function(description_file = "DESCRIPTION", export = FALSE) {
 
 	# Creating proto files for CFF and DESCRIPTION -----------------------------
 	desc     <- desc::desc(description_file)
-	cff_path <- system.file("extdata", "CITATION-skeleton.cff", package="RCFF")
+	cff_path <- system.file("extdata", "CITATION-skeleton.cff", package="citation")
 	cff      <- readLines(cff_path)
 
 	# Placing CFF elements -----------------------------------------------------
@@ -71,9 +71,7 @@ exportCFF <- function(infile, outfile="CITATION.cff") {
 		outfile <- gsub(pattern="/", replacement="", x=outfile)
 		message(outfile_old, " already exists. Saving as ", outfile)
 	}
-	out_file <- file(outfile)
-	writeLines(infile, out_file)
-	close(out_file)
+	writeLines(infile, outfile)
 }
 
 validateR <- function(r_file) {
