@@ -3,7 +3,11 @@ Type: Package
 Title: Software Citation Tools
 Version: 0.4.1
 Date: 2020-06-26
-Authors@R: c(person("Jan Philipp", "Dietrich", email = "dietrich@pik-potsdam.de", role = c("aut","cre")))
+Authors@R:
+	c(
+		person("Jan Philipp", "Dietrich", email = "dietrich@pik-potsdam.de", role = c("aut","cre")),
+		person("Waldir", "Leoncio", email = "w.l.netto@medisin.uio.no", role = c("aut"))
+	)
 Description: A collection of functions to extract citation information from 'R' packages and to deal with files in 'citation file format' (<https://citation-file-format.github.io/>), extending the functionality already provided by the citation() function in the 'utils' package.
 Imports: utils, yaml, jsonlite, desc
 URL: https://github.com/pik-piam/citation, https://doi.org/10.5281/zenodo.3813429
@@ -11,5 +15,5 @@ BugReports: https://github.com/pik-piam/citation/issues
 License: BSD_2_clause + file LICENSE
 Encoding: UTF-8
 LazyData: yes
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 ValidationKey: 755999
