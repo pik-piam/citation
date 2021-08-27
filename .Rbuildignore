@@ -3,3 +3,6 @@
 ^.*\.zenodo.json$
 ^cran-comments\.md$
 ^CRAN-RELEASE$
+^\.buildlibrary$
+^\.github$
+^codecov\.yml$
