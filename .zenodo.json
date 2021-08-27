@@ -1,6 +1,6 @@
 {
   "title": "citation: Software Citation Tools",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "<p>A collection of functions to extract citation information from 'R' packages and to deal with files in 'citation file format' (<https://citation-file-format.github.io/>), extending the functionality already provided by the citation() function in the 'utils' package.<\/p>",
   "creators": [
     {

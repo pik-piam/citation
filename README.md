@@ -1,8 +1,8 @@
 # Software Citation Tools
 
-R package **citation**, version **0.5.0**
+R package **citation**, version **0.5.1**
 
-[![CRAN status](https://www.r-pkg.org/badges/version/citation)](https://cran.r-project.org/package=citation) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3813429.svg)](https://doi.org/10.5281/zenodo.3813429)    [![r-universe](https://pik-piam.r-universe.dev/badges/citation)](https://pik-piam.r-universe.dev/ui#builds)
+[![CRAN status](https://www.r-pkg.org/badges/version/citation)](https://cran.r-project.org/package=citation) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3813429.svg)](https://doi.org/10.5281/zenodo.3813429)  [![R build status](https://github.com/pik-piam/citation/workflows/check/badge.svg)](https://github.com/pik-piam/citation/actions) [![codecov](https://codecov.io/gh/pik-piam/citation/branch/master/graph/badge.svg)](https://codecov.io/gh/pik-piam/citation) [![r-universe](https://pik-piam.r-universe.dev/badges/citation)](https://pik-piam.r-universe.dev/ui#builds)
 
 ## Purpose and Functionality
 
@@ -38,7 +38,7 @@ In case of questions / problems please contact Jan Philipp Dietrich <dietrich@pi
 
 To cite package **citation** in publications use:
 
-Dietrich J, Leoncio W (2021). _citation: Software Citation Tools_. doi: 10.5281/zenodo.3813429 (URL: https://doi.org/10.5281/zenodo.3813429), R package version 0.5.0, <URL: https://github.com/pik-piam/citation>.
+Dietrich J, Leoncio W (2021). _citation: Software Citation Tools_. doi: 10.5281/zenodo.3813429 (URL: https://doi.org/10.5281/zenodo.3813429), R package version 0.5.1, <URL: https://github.com/pik-piam/citation>.
 
 A BibTeX entry for LaTeX users is
 
@@ -47,7 +47,7 @@ A BibTeX entry for LaTeX users is
   title = {citation: Software Citation Tools},
   author = {Jan Philipp Dietrich and Waldir Leoncio},
   year = {2021},
-  note = {R package version 0.5.0},
+  note = {R package version 0.5.1},
   doi = {10.5281/zenodo.3813429},
   url = {https://github.com/pik-piam/citation},
 }
