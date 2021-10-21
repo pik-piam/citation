@@ -40,7 +40,7 @@ r2cff <- function(descriptionFile = "DESCRIPTION", export = FALSE) {
   cff <- append2cff(cff, desc, "Title")
   cff <- append2cff(cff, desc, "Version")
   cff <- append2cff(cff, desc, c("Date", "Date/Publication"), "date-released")
-  cff <- append(cff, "authors:", )
+  cff <- append(cff, "authors:")
   processedAuthors <- unlist(lapply(desc$get_authors(), processAuthor))
   cff <- append(cff, processedAuthors)
   validateCFF(cff)
@@ -70,7 +70,7 @@ append2cff <- function(cff, desc, field, cffField = tolower(field)) {
 
   # Appending value and returning full CFF file (so far) ---
   if (!is.na(value)) {
-    cff <- append(cff, paste(cffField, ": ", value, collapse = ""))
+    cff <- append(cff, paste0(cffField, ": ", value, collapse = ""))
   }
   return(cff)
 }
