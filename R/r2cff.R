@@ -55,11 +55,20 @@ r2cff <- function(descriptionFile = "DESCRIPTION", export = FALSE) {
 
 append2cff <- function(cff, desc, field, cffField = tolower(field)) {
   # Finds a field in R DESCRIPTION and appends it to the CFF file
+
+  # Trying to find a field containing values ---------------
   for (f in field) {
     if (!is.na(desc$get(f))) {
       value <- desc$get(f)
     }
   }
+
+  # Formatting dates as ISO 8601 ---------------------------
+  if (grepl("date", cffField, ignore.case = TRUE)) {
+    value <- as.Date(as.Date(value), format = "%Y-%M-%D")
+  }
+
+  # Appending value and returning full CFF file (so far) ---
   if (!is.na(value)) {
     cff <- append(cff, paste(cffField, ": ", value, collapse = ""))
   }
