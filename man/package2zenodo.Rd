@@ -17,13 +17,12 @@ The metadata information that should be provided to Zenodo in JSON format.
 \description{
 Creates a .zenodo.json for a R package. This file is an
 (officially unsupported) method to provide ZENODO with metadata information
-about the package and will overwrite the information ZENODO would otherwise 
+about the package and will overwrite the information ZENODO would otherwise
 auto-generate from the repository.
 }
 \examples{
 
 package2zenodo("citation")
-
 }
 \author{
 Jan Philipp Dietrich
