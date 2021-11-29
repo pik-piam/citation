@@ -1,6 +1,6 @@
 # Software Citation Tools
 
-R package **citation**, version **0.5.2**
+R package **citation**, version **0.5.3**
 
 [![CRAN status](https://www.r-pkg.org/badges/version/citation)](https://cran.r-project.org/package=citation) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3813429.svg)](https://doi.org/10.5281/zenodo.3813429) [![R build status](https://github.com/pik-piam/citation/workflows/check/badge.svg)](https://github.com/pik-piam/citation/actions) [![codecov](https://codecov.io/gh/pik-piam/citation/branch/master/graph/badge.svg)](https://codecov.io/gh/pik-piam/citation) [![r-universe](https://pik-piam.r-universe.dev/badges/citation)](https://pik-piam.r-universe.dev/ui#builds)
 
@@ -52,4 +52,3 @@ A BibTeX entry for LaTeX users is
   url = {https://github.com/pik-piam/citation},
 }
 ```
-
