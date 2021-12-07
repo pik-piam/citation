@@ -51,13 +51,17 @@ cff2r <- function(cff_file = "CITATION.cff", export = FALSE, ...) {
 	}
 }
 
-exportDESCRIPTION <- function(infile, outfile="DESCRIPTION") {
+exportDESCRIPTION <- function(infile, outfile="DESCRIPTION", overwrite=FALSE) {
 	# Writes the created CFF file to the working directory
 	if (file.exists(outfile)) {
 		outfile -> outfile_old
-		outfile <- tempfile(pattern="DESCRIPTION_", tmpdir="", fileext="")
+		outfile <- tempfile(pattern=paste0(outfile, "_"), tmpdir="", fileext="")
 		outfile <- gsub(pattern="/", replacement="", x=outfile)
-		message(outfile_old, " already exists. Saving as ", outfile)
+		if (overwrite) {
+			outfile <- outfile_old
+		} else {
+			message(outfile_old, " already exists. Saving as ", outfile)
+		}
 	}
 	sink(outfile)
 	print(infile)
