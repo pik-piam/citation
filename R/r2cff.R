@@ -39,8 +39,8 @@ r2cff <- function(descriptionFile = "DESCRIPTION", export = FALSE) {
   # Placing CFF elements -----------------------------------------------------
   cff <- append2cff(cff, desc, "Title")
   cff <- append2cff(cff, desc, "Version")
-  cff <- append2cff(cff, desc, "Date", "date-released")
-  cff <- append(cff, "authors:", )
+  cff <- append2cff(cff, desc, c("Date", "Date/Publication"), "date-released")
+  cff <- append(cff, "authors:")
   processedAuthors <- unlist(lapply(desc$get_authors(), processAuthor))
   cff <- append(cff, processedAuthors)
   validateCFF(cff)
@@ -55,9 +55,22 @@ r2cff <- function(descriptionFile = "DESCRIPTION", export = FALSE) {
 
 append2cff <- function(cff, desc, field, cffField = tolower(field)) {
   # Finds a field in R DESCRIPTION and appends it to the CFF file
-  value <- desc$get(field)
+
+  # Trying to find a field containing values ---------------
+  value <- NA
+  for (f in field) {
+    if (!is.na(desc$get(f))) {
+      value <- desc$get(f)
+    }
+  }
+
+  # Appending value and returning full CFF file (so far) ---
   if (!is.na(value)) {
-    cff <- append(cff, paste(cffField, ": ", value, collapse = ""))
+    if (grepl("date", cffField, ignore.case = TRUE)) {
+      # Formatting dates as ISO 8601 ---------------------------
+      value <- as.Date(as.Date(value), format = "%Y-%M-%D")
+    }
+    cff <- append(cff, paste0(cffField, ": ", value, collapse = ""))
   }
   return(cff)
 }
