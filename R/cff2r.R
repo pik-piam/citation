@@ -59,9 +59,9 @@ exportDESCRIPTION <- function(infile, outfile="DESCRIPTION") {
 		outfile <- gsub(pattern="/", replacement="", x=outfile)
 		message(outfile_old, " already exists. Saving as ", outfile)
 	}
-	out_file <- sink(outfile)
-	print(infile) # FIXME: output is a mess
-	sink(NULL)
+	sink(outfile)
+	print(infile)
+	sink()
 }
 
 validateFile <- function(file) {
