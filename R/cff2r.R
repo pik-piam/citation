@@ -41,18 +41,23 @@ cff2r <- function(cff_file = "CITATION.cff", export = FALSE, ...) {
 	desc <- desc$set("Date", cff$date)
 	addAuthors(cff$authors, desc)
 	suppressMessages(desc$del_author("Jo", "Doe"))
-	#TODO: unparse Authors@R so they have the canonical format
+
+	# Removing empty elements --------------------------------------------------
+	desc_char <- desc$str()
+	desc_char <- gsub("\\{\\{\\s\\w+\\s\\}\\}", "", desc_char)
 
 	# Returning DESCRIPTION file -----------------------------------------------
 	if (!export) {
-		return(desc)
+		return(cat(desc_char))
 	} else {
-		exportDESCRIPTION(desc, ...)
+		exportDESCRIPTION(desc_char, ...)
 	}
 }
 
 exportDESCRIPTION <- function(infile, outfile="DESCRIPTION", overwrite=FALSE) {
 	# Writes the created CFF file to the working directory
+
+	# Determine the name of the output file ------------------------------------
 	if (file.exists(outfile)) {
 		outfile -> outfile_old
 		outfile <- tempfile(pattern=paste0(outfile, "_"), tmpdir="", fileext="")
@@ -63,8 +68,14 @@ exportDESCRIPTION <- function(infile, outfile="DESCRIPTION", overwrite=FALSE) {
 			message(outfile_old, " already exists. Saving as ", outfile)
 		}
 	}
+
+	# Parsing file -------------------------------------------------------------
+	infile <- gsub("\\[3\\dm", "", infile)
+	infile <- gsub("\033", "", infile, fixed = TRUE)
+
+	# Printing and exporting file ----------------------------------------------
 	sink(outfile)
-	print(infile)
+	print(cat(infile))
 	sink()
 }
 
