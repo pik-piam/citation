@@ -2,6 +2,7 @@
 #' @description Converts a CFF file into DESCRIPTION
 #' @param cff_file Path and name of the CFF file
 #' @param export if `TRUE`, the output is saved as DESCRIPTION (plus an extension to avoid overwriting)
+#' @param ... other arguments passed to functions (e.g.: \code{outfile})
 #' @return A CFF file converted to a DESCRIPTION file of class \code{c("description", "R6")}. See the \code{desc} package for details on how to further modify fields.
 #' @author Waldir Leoncio
 #' @export
@@ -26,7 +27,7 @@
 #' https://github.com/citation-file-format/citation-file-format/blob/master/README.md
 #' https://citation-file-format.github.io/cff-initializer-javascript/
 #' @seealso r2cff
-cff2r <- function(cff_file = "CITATION.cff", export = FALSE) {
+cff2r <- function(cff_file = "CITATION.cff", export = FALSE, ...) {
 	validateFile(cff_file)
 
 	# Creating proto files for CFF and DESCRIPTION -----------------------------
@@ -46,13 +47,12 @@ cff2r <- function(cff_file = "CITATION.cff", export = FALSE) {
 	if (!export) {
 		return(desc)
 	} else {
-		exportDESCRIPTION(desc)
+		exportDESCRIPTION(desc, ...)
 	}
 }
 
-exportDESCRIPTION <- function(infile, outfile="CITATION.cff") {
+exportDESCRIPTION <- function(infile, outfile="DESCRIPTION") {
 	# Writes the created CFF file to the working directory
-	outfile <- "DESCRIPTION"
 	if (file.exists(outfile)) {
 		outfile -> outfile_old
 		outfile <- tempfile(pattern="DESCRIPTION_", tmpdir="", fileext="")
@@ -69,7 +69,6 @@ validateFile <- function(file) {
 	if (!file.exists(file)) {
 		stop(file, " file not found on the provided file path.")
 	}
-
 }
 
 addAuthors <- function(authors, desc) {
