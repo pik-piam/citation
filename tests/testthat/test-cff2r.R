@@ -10,5 +10,5 @@ citation <- findCFF("citation", "CFF-CITATION.cff")
 
 # Testing ================================================ #
 test_that("r2cff generally works", {
-	expect_output(cff2r(citation), "Authors@R")
+  expect_output(cff2r(citation), "Authors@R")
 })
