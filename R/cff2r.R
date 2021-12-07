@@ -75,9 +75,9 @@ exportDESCRIPTION <- function(infile, outfile = "DESCRIPTION", overwrite = FALSE
 
   # Printing and exporting file ----------------------------------------------
   withr::with_output_sink(
-		new = outfile,
-		code = print(cat(infile))
-	)
+    new = outfile,
+    code = print(cat(infile))
+  )
 }
 
 validateFile <- function(file) {

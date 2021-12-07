@@ -4,17 +4,17 @@
 \alias{cff2r}
 \title{Convert from CFF into R}
 \usage{
-cff2r(cff_file = "CITATION.cff", export = FALSE, ...)
+cff2r(cffFile = "CITATION.cff", export = FALSE, ...)
 }
 \arguments{
-\item{cff_file}{Path and name of the CFF file}
+\item{cffFile}{Path and name of the CFF file}
 
 \item{export}{if `TRUE`, the output is saved as DESCRIPTION (plus an extension to avoid overwriting)}
 
 \item{...}{other arguments passed to functions (e.g.: \code{outfile})}
 }
 \value{
-A CFF file converted to a DESCRIPTION file of class \code{c("description", "R6")}. See the \code{desc} package for details on how to further modify fields.
+A CFF file converted to a DESCRIPTION file.
 }
 \description{
 Converts a CFF file into DESCRIPTION
