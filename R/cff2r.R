@@ -39,7 +39,7 @@ cff2r <- function(cff_file = "CITATION.cff", export = FALSE) {
 	desc <- desc$set("Description", cff$message)
 	desc <- desc$set("Date", cff$date)
 	addAuthors(cff$authors, desc)
-	desc$del_author("Jo", "Doe")
+	suppressMessages(desc$del_author("Jo", "Doe"))
 	#TODO: unparse Authors@R so they have the canonical format
 
 	# Returning DESCRIPTION file -----------------------------------------------
