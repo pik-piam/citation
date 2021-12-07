@@ -96,7 +96,6 @@ addAuthors <- function(authors, desc) {
 				author$family,
 				email=author$email
 			)
-			# TODO: parse ORCID. see str(desc) and add_orcid for details
 		} else {
 			desc$add_author(author$name)
 		}
