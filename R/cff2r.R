@@ -42,13 +42,14 @@ cff2r <- function(cffFile = "CITATION.cff", export = FALSE, ...) {
   addAuthors(cff$authors, desc)
   suppressMessages(desc$del_author("Jo", "Doe"))
 
-  # Removing empty elements --------------------------------------------------
+  # Removing empty elements + Encoding ---------------------------------------
   descChar <- desc$str()
   descChar <- gsub("\\{\\{\\s\\w+\\s\\}\\}", "", descChar)
+  descChar <- gsub("\\[3\\dmEncoding.+$", "", descChar)
 
   # Returning DESCRIPTION file -----------------------------------------------
   if (!export) {
-    return(cat(descChar))
+    cat(descChar)
   } else {
     exportDESCRIPTION(descChar, ...)
   }
@@ -74,10 +75,7 @@ exportDESCRIPTION <- function(infile, outfile = "DESCRIPTION", overwrite = FALSE
   infile <- gsub("\033", "", infile, fixed = TRUE)
 
   # Printing and exporting file ----------------------------------------------
-  withr::with_output_sink(
-    new = outfile,
-    code = print(cat(infile))
-  )
+  writeLines(text = infile, con = outfile)
 }
 
 validateFile <- function(file) {
