@@ -25,3 +25,11 @@ test_that("Exporting works", {
   filesToRemove <- list.files(pattern = "CITATION")
   file.remove(filesToRemove)
 })
+
+test_that("Exceptions are properly handled", {
+  expect_error(r2cff("inexistent_file"), "file not found")
+  tempFile <- tempfile()
+  writeLines(readLines(descFile)[-2], tempFile)
+  expect_warning(r2cff(tempFile, export = TRUE), "title not found.")
+  file.remove(tempFile, "CITATION.cff")
+})
