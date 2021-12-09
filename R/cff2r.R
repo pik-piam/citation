@@ -2,7 +2,9 @@
 #' @description Converts a CFF file into DESCRIPTION
 #' @param cffFile Path and name of the CFF file
 #' @param export if `TRUE`, the output is saved as DESCRIPTION (plus an extension to avoid overwriting)
-#' @param ... other arguments passed to functions (e.g.: \code{outfile})
+#' @param ... when \code{export = TRUE}, the user can pass additional arguments
+#' to the \code{exportDESCRIPTION} function. More information in the Details
+#' section.
 #' @return A CFF file converted to a DESCRIPTION file.
 #' @author Waldir Leoncio
 #' @export
@@ -17,6 +19,14 @@
 #' CITATION.cff files are plain text files with human- and machine-readable
 #' citation information for software. Code developers can include them in their
 #' repositories to let others know how to correctly cite their software.
+#'
+#' When \code{export = TRUE}, the user can use the following arguments
+#' to customize the output file:
+#' \describe{
+#'  \item{outfile}{The name of the exported file}
+#'  \item{overwrite}{Defaults to \code{FALSE}. If \code{TRUE}, will replace any
+#'    homonymous file present on the export path}
+#' }
 #' @references
 #' Druskat S., Spaaks J.H., Chue Hong N., Haines R., Baker J. (2019).
 #' Citation File Format (CFF) (version 1.1.0).

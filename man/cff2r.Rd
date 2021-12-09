@@ -11,7 +11,9 @@ cff2r(cffFile = "CITATION.cff", export = FALSE, ...)
 
 \item{export}{if `TRUE`, the output is saved as DESCRIPTION (plus an extension to avoid overwriting)}
 
-\item{...}{other arguments passed to functions (e.g.: \code{outfile})}
+\item{...}{when \code{export = TRUE}, the user can pass additional arguments
+to the \code{exportDESCRIPTION} function. More information in the Details
+section.}
 }
 \value{
 A CFF file converted to a DESCRIPTION file.
@@ -27,6 +29,14 @@ stored in files named CITATION.cff.
 CITATION.cff files are plain text files with human- and machine-readable
 citation information for software. Code developers can include them in their
 repositories to let others know how to correctly cite their software.
+
+When \code{export = TRUE}, the user can use the following arguments
+to customize the output file:
+\describe{
+ \item{outfile}{The name of the exported file}
+ \item{overwrite}{Defaults to \code{FALSE}. If \code{TRUE}, will replace any
+   homonymous file present on the export path}
+}
 }
 \examples{
 citation_file <- system.file("CFF-CITATION.cff", package="citation")
