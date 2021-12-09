@@ -9,8 +9,19 @@
 #' @author Waldir Leoncio
 #' @export
 #' @examples
-#' citation_file <- system.file("CFF-CITATION.cff", package="citation")
+#' # Printing converted file onto R session
+#' citation_file <- system.file("CFF-CITATION.cff", package = "citation")
 #' cff2r(citation_file)
+#'
+#' # Saving converted file to temporary folder on system
+#' tempFolder <- tempdir()
+#' cff2r(
+#'  citation_file, export = TRUE, outname = "converted-desc", overwrite = TRUE,
+#'  outpath = tempFolder
+#' )
+#'
+#' # Making sure the file is indeed there
+#' cat(readLines(file.path(tempFolder, "converted-desc")), sep="\n")
 #' @details
 #' CFF is a standard format for the citation of software proposed by
 #' Stephan Druskat et. al. (see references below). CFF-compliant files are
@@ -23,9 +34,12 @@
 #' When \code{export = TRUE}, the user can use the following arguments
 #' to customize the output file:
 #' \describe{
-#'  \item{outfile}{The name of the exported file}
+#'  \item{outname}{The name of the exported file}
 #'  \item{overwrite}{Defaults to \code{FALSE}. If \code{TRUE}, will replace any
 #'    homonymous file present on the export path}
+#'  \item{outpath}{By default, the file is saved to a temporary directory. One
+#'    may provide a different path here. For example, \code{outpath = "."} will
+#'    save to the current working directory}
 #' }
 #' @references
 #' Druskat S., Spaaks J.H., Chue Hong N., Haines R., Baker J. (2019).
@@ -66,18 +80,20 @@ cff2r <- function(cffFile = "CITATION.cff", export = FALSE, ...) {
   }
 }
 
-exportDESCRIPTION <- function(infile, outfile = "DESCRIPTION", overwrite = FALSE) {
+exportDESCRIPTION <- function(
+  infile, outname = "DESCRIPTION", overwrite = FALSE, outpath = tempdir()
+) {
   # Writes the created CFF file to the working directory
 
   # Determine the name of the output file ------------------------------------
-  if (file.exists(outfile)) {
-    outfileOld <- outfile
-    outfile <- tempfile(pattern = paste0(outfile, "_"), tmpdir = "", fileext = "")
-    outfile <- gsub(pattern = "/", replacement = "", x = outfile)
+  if (file.exists(file.path(outpath, outname))) {
+    outnameOld <- outname # Saving previous name to use in the messages below
+    outname <- tempfile(pattern = paste0(outname, "_"), tmpdir = "")
     if (overwrite) {
-      outfile <- outfileOld
+      message(outnameOld, " already exists. Overwriting as requested.")
+      outname <- outnameOld
     } else {
-      message(outfileOld, " already exists. Saving as ", outfile)
+      message(outnameOld, " already exists. Saving under a different filename.")
     }
   }
 
@@ -86,7 +102,8 @@ exportDESCRIPTION <- function(infile, outfile = "DESCRIPTION", overwrite = FALSE
   infile <- gsub("\033", "", infile, fixed = TRUE)
 
   # Printing and exporting file ----------------------------------------------
-  writeLines(text = infile, con = outfile)
+  writeLines(text = infile, con = file.path(outpath, outname))
+  message("Saved as ", file.path(outpath, outname))
 }
 
 validateFile <- function(file) {

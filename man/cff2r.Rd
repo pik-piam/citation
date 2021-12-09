@@ -33,14 +33,28 @@ repositories to let others know how to correctly cite their software.
 When \code{export = TRUE}, the user can use the following arguments
 to customize the output file:
 \describe{
- \item{outfile}{The name of the exported file}
+ \item{outname}{The name of the exported file}
  \item{overwrite}{Defaults to \code{FALSE}. If \code{TRUE}, will replace any
    homonymous file present on the export path}
+ \item{outpath}{By default, the file is saved to a temporary directory. One
+   may provide a different path here. For example, \code{outpath = "."} will
+   save to the current working directory}
 }
 }
 \examples{
-citation_file <- system.file("CFF-CITATION.cff", package="citation")
+# Printing converted file onto R session
+citation_file <- system.file("CFF-CITATION.cff", package = "citation")
 cff2r(citation_file)
+
+# Saving converted file to temporary folder on system
+tempFolder <- tempdir()
+cff2r(
+ citation_file, export = TRUE, outname = "converted-desc", overwrite = TRUE,
+ outpath = tempFolder
+)
+
+# Making sure the file is indeed there
+cat(readLines(file.path(tempFolder, "converted-desc")), sep="\n")
 }
 \references{
 Druskat S., Spaaks J.H., Chue Hong N., Haines R., Baker J. (2019).
