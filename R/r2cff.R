@@ -5,6 +5,7 @@
 #' @return The package's DESCRIPTION file converted to CFF
 #' @author Waldir Leoncio
 #' @export
+#' @seealso cff2r
 #' @examples
 #' descr <- system.file("DESCRIPTION", package = "citation")
 #' r2cff(descr)

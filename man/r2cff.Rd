@@ -40,6 +40,9 @@ https://citation-file-format.github.io
 https://github.com/citation-file-format/citation-file-format/blob/master/README.md
 https://citation-file-format.github.io/cff-initializer-javascript/
 }
+\seealso{
+cff2r
+}
 \author{
 Waldir Leoncio
 }

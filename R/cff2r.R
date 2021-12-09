@@ -27,11 +27,12 @@
 #' https://github.com/citation-file-format/citation-file-format/blob/master/README.md
 #' https://citation-file-format.github.io/cff-initializer-javascript/
 #' @seealso r2cff
+#' @importFrom desc description
 cff2r <- function(cffFile = "CITATION.cff", export = FALSE, ...) {
   validateFile(cffFile)
 
   # Creating proto files for CFF and DESCRIPTION -----------------------------
-  desc <- desc::description$new("!new")
+  desc <- description$new("!new")
   cff  <- read_cff(cffFile)
 
   # Placing DESCRIPTION elements ---------------------------------------------
@@ -60,7 +61,7 @@ exportDESCRIPTION <- function(infile, outfile = "DESCRIPTION", overwrite = FALSE
 
   # Determine the name of the output file ------------------------------------
   if (file.exists(outfile)) {
-    outfile -> outfileOld
+    outfileOld <- outfile
     outfile <- tempfile(pattern = paste0(outfile, "_"), tmpdir = "", fileext = "")
     outfile <- gsub(pattern = "/", replacement = "", x = outfile)
     if (overwrite) {
