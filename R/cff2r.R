@@ -88,7 +88,7 @@ exportDESCRIPTION <- function(
   # Determine the name of the output file ------------------------------------
   if (file.exists(file.path(outpath, outname))) {
     outnameOld <- outname # Saving previous name to use in the messages below
-    outname <- tempfile(pattern = paste0(outname, "_"), tmpdir = "")
+    outname <- tempfile(pattern = paste0(outname, "_"), tmpdir = ".")
     if (overwrite) {
       message(outnameOld, " already exists. Overwriting as requested.")
       outname <- outnameOld

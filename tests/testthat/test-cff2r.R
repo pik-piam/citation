@@ -5,7 +5,8 @@ test_that("r2cff generally works", {
   expect_output(cff2r(citationFile), "Authors@R")
   expect_message(
     cff2r(citationFile, export = TRUE, outname = exportName, outpath = tempPath),
-    paste("Saved as", normalizePath(file.path(tempPath, exportName)))
+    paste("Saved as", normalizePath(file.path(tempPath, exportName))),
+    fixed = TRUE
   )
   expect_message(
     cff2r(citationFile, export = TRUE, outname = exportName, outpath = tempPath),
