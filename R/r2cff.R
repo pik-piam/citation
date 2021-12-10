@@ -81,8 +81,7 @@ exportCFF <- function(infile, outfile = "CITATION.cff") {
   outfile <- "CITATION.cff"
   if (file.exists(outfile)) {
     existingFile <- outfile
-    outfile <- tempfile(pattern = "CITATION_", tmpdir = "", fileext = ".cff")
-    outfile <- gsub(pattern = "/", replacement = "", x = outfile)
+    outfile <- tempfile(pattern = "CITATION_", tmpdir = ".", fileext = ".cff")
     message(existingFile, " already exists. Saving as ", outfile)
   }
   writeLines(infile, outfile)
