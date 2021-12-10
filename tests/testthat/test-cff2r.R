@@ -1,11 +1,11 @@
 test_that("r2cff generally works", {
   citationFile <- system.file("CFF-CITATION.cff", package = "citation")
-  tempPath <- tempdir()
+  tempPath <- withr::local_tempdir()
   exportName <- "testExport"
   expect_output(cff2r(citationFile), "Authors@R")
   expect_message(
     cff2r(citationFile, export = TRUE, outname = exportName, outpath = tempPath),
-    paste("Saved as", file.path(tempPath, exportName))
+    paste("Saved as", normalizePath(file.path(tempPath, exportName)))
   )
   expect_message(
     cff2r(citationFile, export = TRUE, outname = exportName, outpath = tempPath),
@@ -18,5 +18,4 @@ test_that("r2cff generally works", {
     ),
     "testExport already exists. Overwriting as requested."
   )
-  file.remove(file.path(tempPath, exportName))
 })

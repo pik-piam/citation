@@ -103,7 +103,7 @@ exportDESCRIPTION <- function(
 
   # Printing and exporting file ----------------------------------------------
   writeLines(text = infile, con = file.path(outpath, outname))
-  message("Saved as ", file.path(outpath, outname))
+  message("Saved as ", normalizePath(file.path(outpath, outname)))
 }
 
 validateFile <- function(file) {
