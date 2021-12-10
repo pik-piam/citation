@@ -1,0 +1,27 @@
+cff-version: 1.1.0
+message: "If you use CFF in your research, please cite it using these metadata."
+authors:
+  - family-names: Druskat
+    given-names: Stephan
+    orcid: https://orcid.org/0000-0003-4925-7248
+  - family-names: Spaaks
+    given-names: Jurriaan H.
+    orcid: https://orcid.org/0000-0002-7064-4069
+    email: jhs@foobar.com
+  - family-names: Chue Hong
+    given-names: Neil
+    email: chn@foobar.com
+  - name: Acme University
+title: A mockup for testing purposes
+version: 2.5.9
+doi: 10.9999/zenodo.1009999
+date-released: 2021-08-26
+keywords:
+  - citation file format
+  - CFF
+  - citation files
+  - software citation
+  - format
+  - YAML
+  - software sustainability
+  - research software
