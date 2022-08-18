@@ -10,3 +10,4 @@
 ^workflow$
 ^.lintr$
 ^tests/.lintr$
+^CRAN-SUBMISSION$
