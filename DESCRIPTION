@@ -1,8 +1,8 @@
 Package: citation
 Type: Package
 Title: Software Citation Tools
-Version: 0.6.2
-Date: 2022-01-31
+Version: 0.6.3
+Date: 2022-08-18
 Authors@R: c(
     person("Jan Philipp", "Dietrich", email = "dietrich@pik-potsdam.de", role = c("aut","cre")),
     person("Waldir", "Leoncio", email = "w.l.netto@medisin.uio.no", role = c("aut")))
@@ -20,4 +20,4 @@ URL: https://github.com/pik-piam/citation, https://doi.org/10.5281/zenodo.381342
 BugReports: https://github.com/pik-piam/citation/issues
 License: BSD_2_clause + file LICENSE
 Encoding: UTF-8
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1
