@@ -48,6 +48,10 @@ r2cff <- function(descriptionFile = "DESCRIPTION", export = FALSE) {
 
   # Returning CFF file -------------------------------------------------------
   if (!export) {
+    operating.system <- Sys.info()[["sysname"]]
+    if (operating.system == "Linux") {
+      cff <- iconv(cff, to = "UTF-8")
+    }
     return(cat(cff, sep = "\n"))
   } else {
     exportCFF(cff)
