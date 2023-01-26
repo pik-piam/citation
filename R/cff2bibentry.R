@@ -1,10 +1,10 @@
 #' cff2bibentry
-#' 
+#'
 #' Converter citation file format to bibentry
-#' 
+#'
 #' @param x path to citation file or read in citation in citation file format
 #' @author Jan Philipp Dietrich
-#' @importFrom utils person as.personList bibentry
+#' @importFrom utils person bibentry
 #' @export
 
 cff2bibentry <- function(x) {
@@ -17,9 +17,9 @@ cff2bibentry <- function(x) {
                              family=x$authors[[i]][["family-names"]],
                              email=x$authors[[i]][["email"]])
   }
-  x$authors <- as.personList(authors)
+  x$authors <- do.call(c, authors)
   if(!is.null(x$version)) x$title <-paste(x$title,"- Version",x$version)
-  
+
   bibentry(bibtype="Misc",
            title = x$title,
            author = x$authors,
@@ -27,5 +27,5 @@ cff2bibentry <- function(x) {
            date = x$`date-released`,
            year = format(as.Date(x$`date-released`),"%Y"),
            url=x$url)
-  
+
 }
