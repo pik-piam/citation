@@ -1,6 +1,7 @@
 ## changes
 
 * this release removes an import from utils::as.personList
+* fixed r-universe URL in README.md
 
 ## Test environments
 * local R installation, R 4.1.2
