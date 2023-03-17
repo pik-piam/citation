@@ -1,8 +1,8 @@
 Package: citation
 Type: Package
 Title: Software Citation Tools
-Version: 0.6.4
-Date: 2023-01-26
+Version: 0.6.4.9001
+Date: 2023-03-17
 Authors@R: c(
     person("Jan Philipp", "Dietrich", email = "dietrich@pik-potsdam.de", role = c("aut","cre")),
     person("Waldir", "Leoncio", email = "w.l.netto@medisin.uio.no", role = c("aut")))
