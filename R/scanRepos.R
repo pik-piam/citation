@@ -1,6 +1,7 @@
 #' @title scan repositories
 #' @description Scan repositories for existing CITATION.cff information
-#' @param repos character vector of repository urls to be scanned
+#' @param repos character vector of repository urls or links to CITATION.cff
+#' files to be scanned
 #' @return A list with CITATION.cff information collected from the
 #' provided repositories
 #' @author Jan Philipp Dietrich

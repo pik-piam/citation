@@ -7,7 +7,8 @@
 scanRepos(repos)
 }
 \arguments{
-\item{repos}{character vector of repository urls to be scanned}
+\item{repos}{character vector of repository urls or links to CITATION.cff
+files to be scanned}
 }
 \value{
 A list with CITATION.cff information collected from the
