@@ -1,14 +1,16 @@
 #' @title Convert from R DESCRIPTION into CFF
 #' @description Converts an R package DESCRIPTION file to Citation File Format
 #' @param descriptionFile Path and name of the DESCRIPTION file
-#' @param export if `TRUE`, the output is saved as CITATION.cff
+#' @param descriptionFile either the path to a DESCIPTION file, the path to a main
+#' folder of a package (containing a DESCRIPTION file) or the name of a package.
+#' @param export if `TRUE`, the output is saved as CITATION.cff in the folder of
+#' the DESCRIPTION file.
 #' @return The package's DESCRIPTION file converted to CFF
-#' @author Waldir Leoncio
+#' @author Waldir Leoncio, Jan Philipp Dietrich
 #' @export
 #' @seealso cff2r
 #' @examples
-#' descr <- system.file("DESCRIPTION", package = "citation")
-#' r2cff(descr)
+#' r2cff("citation")
 #' @importFrom desc desc
 #' @details
 #' CFF is a standard format for the citation of software proposed by
@@ -28,100 +30,107 @@
 #' https://github.com/citation-file-format/citation-file-format/blob/master/README.md
 #' https://citation-file-format.github.io/cff-initializer-javascript/
 r2cff <- function(descriptionFile = "DESCRIPTION", export = FALSE) {
-  # Makes sure the file passed to r2cff() exists
-  if (!file.exists(descriptionFile)) {
-    stop(descriptionFile, " file not found on the provided file path.")
-  }
 
-  # Creating proto files for CFF and DESCRIPTION -----------------------------
-  desc <- desc::desc(descriptionFile)
-  cff <- readLines(system.file("extdata", "CITATION-skeleton.cff", package = "citation"))
-
-  # Placing CFF elements -----------------------------------------------------
-  cff <- append2cff(cff, desc, "Title")
-  cff <- append2cff(cff, desc, "Version")
-  cff <- append2cff(cff, desc, c("Date", "Date/Publication"), "date-released")
-  cff <- append(cff, "authors:")
-  processedAuthors <- unlist(lapply(desc$get_authors(), processAuthor))
-  cff <- append(cff, processedAuthors)
-  validateCFF(cff)
-
-  # Returning CFF file -------------------------------------------------------
-  if (!export) {
-    operating.system <- Sys.info()[["sysname"]]
-    if (operating.system == "Linux") {
-      cff <- iconv(cff, to = "UTF-8")
-    }
-    return(cat(cff, sep = "\n"))
+  # read in DESCRIPTION information
+  if (file.exists(descriptionFile)) {
+    d <- desc(descriptionFile)
+    folder <- sub("DESCRIPTION$", "", descriptionFile)
+    if (folder == "") folder <- "."
+  } else if (file.exists(file.path(descriptionFile, "DESCRIPTION"))) {
+    d <- desc(file = file.path(descriptionFile, "DESCRIPTION"))
+    folder <- descriptionFile
   } else {
-    exportCFF(cff)
+    d <- desc(package = descriptionFile)
+    folder <- NULL
   }
-}
 
-append2cff <- function(cff, desc, field, cffField = tolower(field)) {
-  # Finds a field in R DESCRIPTION and appends it to the CFF file
-
-  # Trying to find a field containing values ---------------
-  value <- NA
-  for (f in field) {
-    if (!is.na(desc$get(f))) {
-      value <- desc$get(f)
+  # function to reformat authors
+  .authors <- function(d) {
+    out <- list()
+    authors <- d$get_authors()
+    for (i in seq_along(authors)) {
+      out[[i]] <- list()
+      if (is.null(authors[[i]]$family)) {
+        out[[i]]$name <- authors[[i]]$given
+      } else if (is.null(authors[[i]]$given)) {
+        out[[i]]$name <- authors[[i]]$family
+      } else {
+        out[[i]][["family-names"]] <- authors[[i]]$family
+        out[[i]][["given-names"]] <- authors[[i]]$given
+      }
+      if (!is.null(authors[[i]]$email)) {
+        out[[i]]$email <- authors[[i]]$email
+      }
+      if (!is.null(authors[[i]]$comment["ORCID"])) {
+        out[[i]]$orcid <- unname(authors[[i]]$comment["ORCID"])
+      }
     }
+    return(out)
   }
 
-  # Appending value and returning full CFF file (so far) ---
-  if (!is.na(value)) {
-    if (grepl("date", cffField, ignore.case = TRUE)) {
-      # Formatting dates as ISO 8601 ---------------------------
-      value <- as.Date(as.Date(value), format = "%Y-%M-%D")
+  # function to reformat license information
+  .license <- function(d) {
+    license <- d$get_field("License", default = NULL)
+    # Fix common differences in license representation
+    license <- sub("clause", "Clause", gsub("_", "-", sub(" [+|].*$", "", license)))
+    license <- sub("GPL-3$", "GPL-3.0", license)
+    return(license)
+  }
+
+  # function to reformat and distribute URLs
+  .urls <- function(d) {
+    out <- list()
+    urls <- d$get_urls()
+    for (url in urls) {
+      if (grepl("doi.org", url)) {
+        out$doi <- sub("^.*doi\\.org/", "", url)
+      } else if (grepl("github.com", url)) {
+        out$`repository-code` <- url
+      } else {
+        out$url <- c(out$url, url)
+      }
     }
-    cff <- append(cff, paste0(cffField, ": ", value, collapse = ""))
+    return(out)
   }
-  return(cff)
-}
 
-exportCFF <- function(infile, outfile = "CITATION.cff") {
-  # Writes the created CFF file to the working directory
-  outfile <- "CITATION.cff"
-  if (file.exists(outfile)) {
-    existingFile <- outfile
-    outfile <- tempfile(pattern = "CITATION_", tmpdir = ".", fileext = ".cff")
-    message(existingFile, " already exists. Saving as ", outfile)
-  }
-  writeLines(infile, outfile)
-}
+  # create CFF output as list
+  cff <- list(`cff-version` = "1.2.0",
+              message = "If you use this software, please cite it using the metadata from this file.",
+              type = "software",
+              title = paste0(d$get("Package"), ": ", d$get("Title")),
+              version = d$get_field("Version", default = NULL),
+              `date-released` = d$get_field("Date", default = NULL),
+              abstract = d$get_field("Description", default = NULL),
+              authors = .authors(d),
+              license = .license(d))
+  # add URLs
+  cff <- c(cff, .urls(d))
 
-validateCFF <- function(cffFile) {
-  # Checks if a CFF file contains all mandatory fields
-  requiredFields <- data.frame(
-    cff = c("authors", "date-released", "title", "version"),
-    r = c("person", "Date", "Title", "Version")
-  )
-  for (f in requiredFields$cff) {
-    if (!any(grepl(pattern = f, x = cffFile))) {
-      rEquivalent <- requiredFields$r[match(f, requiredFields$cff)]
-      warning(
-        f, " not found. It is a CFF 1.1.0 required field.\n",
-        "Please add a '", rEquivalent, "' field to your input file."
-      )
+  # convert to YAML format
+  out <- yaml::as.yaml(cff)
+  if (isTRUE(export) && !is.null(folder)) {
+    cffFile <- file.path(folder, "CITATION.cff")
+    if (file.exists(cffFile)) {
+      message("Updated CITATION.cff file")
+    } else {
+      message("Added CITATION.cff file")
     }
-  }
-}
+    # enc2utf8 re-encodes out as utf8, encoding = "" and useBytes = TRUE prevent automatic re-encoding
+    writeLines(enc2utf8(out), local_connection(file(cffFile, "w+", encoding = "")), useBytes = TRUE)
 
-processAuthor <- function(author) {
-  # Parses the output of desc::desc_get_author to isolate fields
-  author <- as.character(author) # it comes as "person" class
-  roles <- gsub(".+\\[(.+)\\]$", "\\1", author)
-  if (grepl("cph", roles)) {
-    # Assumes "cph" belongs to an organization (see ?person for reason)
-    name <- gsub("\\s\\[.+$", "", author)
-    personOut <- paste(" - name:", name)
+    rbuildignore <- file.path(folder, ".Rbuildignore")
+    if (file.exists(rbuildignore)) {
+      a <- readLines(rbuildignore)
+      if (all(!grepl("CITATION.cff", a, fixed = TRUE))) {
+        a <- c(a, "^.*\\CITATION.cff$")
+        writeLines(a, rbuildignore)
+        message("Added CITATION.cff to .Rbuildignore")
+      }
+    }
+    invisible(out)
   } else {
-    authorSplit <- strsplit(author, " ")[[1]]
-    personOut <- c(
-      paste(" - family-names:", authorSplit[2]),
-      paste("   given-names:", authorSplit[1])
-    )
+    if (isTRUE(export)) warning("Could not export CITATION.cff file as folder package folder is not provided!")
+    message(cat(out))
+    invisible(out)
   }
-  return(personOut)
 }

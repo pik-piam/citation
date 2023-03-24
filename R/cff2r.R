@@ -9,6 +9,7 @@
 #' @author Waldir Leoncio
 #' @export
 #' @examples
+#' \dontrun{
 #' # Printing converted file onto R session
 #' citation_file <- system.file("CFF-CITATION.cff", package = "citation")
 #' cff2r(citation_file)
@@ -22,6 +23,7 @@
 #'
 #' # Making sure the file is indeed there
 #' cat(readLines(file.path(tempFolder, "converted-desc")), sep="\n")
+#' }
 #' @details
 #' CFF is a standard format for the citation of software proposed by
 #' Stephan Druskat et. al. (see references below). CFF-compliant files are

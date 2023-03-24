@@ -7,9 +7,11 @@
 r2cff(descriptionFile = "DESCRIPTION", export = FALSE)
 }
 \arguments{
-\item{descriptionFile}{Path and name of the DESCRIPTION file}
+\item{descriptionFile}{either the path to a DESCIPTION file, the path to a main
+folder of a package (containing a DESCRIPTION file) or the name of a package.}
 
-\item{export}{if `TRUE`, the output is saved as CITATION.cff}
+\item{export}{if `TRUE`, the output is saved as CITATION.cff in the folder of
+the DESCRIPTION file.}
 }
 \value{
 The package's DESCRIPTION file converted to CFF
@@ -27,8 +29,7 @@ citation information for software. Code developers can include them in their
 repositories to let others know how to correctly cite their software.
 }
 \examples{
-descr <- system.file("DESCRIPTION", package = "citation")
-r2cff(descr)
+r2cff("citation")
 }
 \references{
 Druskat S., Spaaks J.H., Chue Hong N., Haines R., Baker J. (2019).
@@ -44,5 +45,5 @@ https://citation-file-format.github.io/cff-initializer-javascript/
 cff2r
 }
 \author{
-Waldir Leoncio
+Waldir Leoncio, Jan Philipp Dietrich
 }

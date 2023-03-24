@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: If you use this software, please cite it using the metadata from this file.
+type: software
+title: 'citation: Software Citation Tools'
+version: 0.7.0
+date-released: '2023-03-21'
+abstract: A collection of functions to extract citation information from 'R' packages
+  and to deal with files in 'citation file format' (<https://citation-file-format.github.io/>),
+  extending the functionality already provided by the citation() function in the 'utils'
+  package.
+authors:
+- family-names: Dietrich
+  given-names: Jan Philipp
+  email: dietrich@pik-potsdam.de
+- family-names: Leoncio
+  given-names: Waldir
+  email: w.l.netto@medisin.uio.no
+license: BSD-2-Clause
+repository-code: https://github.com/pik-piam/citation
+doi: 10.5281/zenodo.3813429
+
