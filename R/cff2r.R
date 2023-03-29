@@ -65,7 +65,7 @@ cff2r <- function(cffFile = "CITATION.cff", export = FALSE, ...) {
   desc <- desc$set("Title", cff$title)
   desc <- desc$set("Version", cff$version)
   desc <- desc$set("Description", cff$message)
-  desc <- desc$set("Date", cff$date)
+  desc <- desc$set("Date", cff$`date-released`)
   addAuthors(cff$authors, desc)
   suppressMessages(desc$del_author("Jo", "Doe"))
 
@@ -121,8 +121,8 @@ addAuthors <- function(authors, desc) {
     isPerson <- any(grepl("family", names(author)))
     if (isPerson) {
       desc$add_author(
-        author$given,
-        author$family,
+        author$`given-names`,
+        author$`family-names`,
         email = author$email
       )
     } else {
