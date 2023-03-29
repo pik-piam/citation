@@ -12,3 +12,4 @@
 ^tests/.lintr$
 ^CRAN-SUBMISSION$
 ^Makefile$
+^.*\CITATION.cff$

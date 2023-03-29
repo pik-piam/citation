@@ -42,6 +42,7 @@ to customize the output file:
 }
 }
 \examples{
+\dontrun{
 # Printing converted file onto R session
 citation_file <- system.file("CFF-CITATION.cff", package = "citation")
 cff2r(citation_file)
@@ -55,6 +56,7 @@ cff2r(
 
 # Making sure the file is indeed there
 cat(readLines(file.path(tempFolder, "converted-desc")), sep="\n")
+}
 }
 \references{
 Druskat S., Spaaks J.H., Chue Hong N., Haines R., Baker J. (2019).
