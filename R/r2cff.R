@@ -122,7 +122,7 @@ r2cff <- function(descriptionFile = "DESCRIPTION", export = FALSE) {
     if (file.exists(rbuildignore)) {
       a <- readLines(rbuildignore)
       if (all(!grepl("CITATION.cff", a, fixed = TRUE))) {
-        a <- c(a, "^.*\\CITATION.cff$")
+        a <- c(a, "^.*CITATION.cff$")
         writeLines(a, rbuildignore)
         message("Added CITATION.cff to .Rbuildignore")
       }
