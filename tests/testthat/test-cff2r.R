@@ -1,5 +1,6 @@
 test_that("r2cff generally works", {
   citationFile <- system.file("CFF-CITATION.cff", package = "citation")
+  testthat::skip_if(!file.exists(citationFile))
   tempPath <- withr::local_tempdir()
   exportName <- "testExport"
   expect_output(cff2r(citationFile), "Authors@R")
