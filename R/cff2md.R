@@ -44,6 +44,7 @@ cff2md <- function(x) {
   }
 
   out <- .returnMarkdown(x, title = c("## ", "\n\n"),
+                         abstract = c("", "\n\n"),
                          authors = c("Authors: ", "\n\n"),
                          affiliations = c("Affiliations: ", "\n\n"),
                          version = "Version: ",
