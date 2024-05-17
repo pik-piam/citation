@@ -10,7 +10,7 @@
 
 cff2md <- function(x) {
   if (is.null(x)) return(x)
-  if (is.character(x) && file.exists(x)) x <- read_cff(x)
+  if (is.character(x) && (file.exists(x) || substring(x, 1, 4) == "http")) x <- read_cff(x)
 
   .formatAuthors <- function(a) {
     if (!is.null(a[["orcid"]])) {
@@ -34,12 +34,25 @@ cff2md <- function(x) {
       space <- paste(rep(" ", nchar(args$authors[1])), collapse = "")
       x$authors <- paste(lapply(x$authors, .formatAuthors), collapse = paste0(",\n", space))
     }
+
     out <- NULL
+    missing <- NULL
     for (i in names(args)) {
+      if(is.null(x[[i]])) missing <- c(missing, i)
       if (is.na(args[[i]][2])) args[[i]][2] <- ""
       if (length(x[[i]]) > 1) x[[i]] <- paste(x[[i]], collapse = ", ")
       if (!is.null(x[[i]])) out <- c(out, paste0(args[[i]][1], x[[i]], args[[i]][2]))
     }
+
+    if(!is.null(missing)) {
+      if(!is.null(x$`repository-code`)) {
+        name <- x$`repository-code`
+      } else {
+        name <- x$title
+      }
+      warning("Missing information for ", name, ": ", paste(missing, collapse=", "), call. = FALSE)
+    }
+
     return(paste(out, collapse = ""))
   }
 
