@@ -18,11 +18,11 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Jan Philipp Dietrich \email{dietrich@pik-potsdam.de}
+\strong{Maintainer}: Jan Philipp Dietrich \email{dietrich@pik-potsdam.de} (\href{https://orcid.org/0000-0002-4309-6431}{ORCID}) (Potsdam Institute for Climate Impact Research)
 
 Authors:
 \itemize{
-  \item Waldir Leoncio \email{w.l.netto@medisin.uio.no}
+  \item Waldir Leoncio \email{w.l.netto@medisin.uio.no} (University of Oslo)
 }
 
 }

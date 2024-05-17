@@ -61,8 +61,9 @@ r2cff <- function(descriptionFile = "DESCRIPTION", export = FALSE) {
       if (!is.null(authors[[i]]$email)) {
         out[[i]]$email <- authors[[i]]$email
       }
-      if (!is.null(authors[[i]]$comment["ORCID"])) {
-        out[[i]]$orcid <- unname(authors[[i]]$comment["ORCID"])
+      for(t in c("ORCID", "affiliation"))
+      if (!is.null(authors[[i]]$comment[t]) && !is.na(authors[[i]]$comment[t])) {
+        out[[i]][[tolower(t)]] <- unname(authors[[i]]$comment[t])
       }
     }
     return(out)
@@ -102,7 +103,8 @@ r2cff <- function(descriptionFile = "DESCRIPTION", export = FALSE) {
               `date-released` = d$get_field("Date", default = NULL),
               abstract = d$get_field("Description", default = NULL),
               authors = .authors(d),
-              license = .license(d))
+              license = .license(d),
+              keywords = d$get_field("Config/Keywords", default = NULL))
   # add URLs
   cff <- c(cff, .urls(d))
 
