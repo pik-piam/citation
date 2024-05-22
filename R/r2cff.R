@@ -105,6 +105,10 @@ r2cff <- function(descriptionFile = "DESCRIPTION", export = FALSE) {
               authors = .authors(d),
               license = .license(d),
               keywords = d$get_field("Config/Keywords", default = NULL))
+
+  # remove empty entries
+  cff <- cff[!vapply(cff, is.null, logical(1))]
+
   # add URLs
   cff <- c(cff, .urls(d))
 
