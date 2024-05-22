@@ -36,7 +36,8 @@ cff2md <- function(x) {
     }
 
     out <- NULL
-    missing <- NULL
+    mandatoryFields <- c("authors", "cff-version", "message", "title")
+    missing <- mandatoryFields[!(mandatoryFields %in% names(x))]
     for (i in names(args)) {
       if(is.null(x[[i]])) missing <- c(missing, i)
       if (is.na(args[[i]][2])) args[[i]][2] <- ""
@@ -44,7 +45,8 @@ cff2md <- function(x) {
       if (!is.null(x[[i]])) out <- c(out, paste0(args[[i]][1], x[[i]], args[[i]][2]))
     }
 
-    if(!is.null(missing)) {
+    if(length(missing) > 0) {
+      missing <- unique(missing)
       if(!is.null(x$`repository-code`)) {
         name <- x$`repository-code`
       } else {
@@ -63,6 +65,7 @@ cff2md <- function(x) {
                          version = "Version: ",
                          "date-released" = c(" (", ")"),
                          license = c(" | License: ", "\n\n"),
+                         type =  c("Type: ", "\n\n"),
                          keywords = c("Keywords: ", "\n\n"),
                          "repository-code" = c("Code Repository: ", "\n\n"),
                          citation = "Citation: ")
