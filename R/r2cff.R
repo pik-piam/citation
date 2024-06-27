@@ -64,6 +64,17 @@ r2cff <- function(descriptionFile = "DESCRIPTION", export = FALSE) {
       for(t in c("ORCID", "affiliation"))
       if (!is.null(authors[[i]]$comment[t]) && !is.na(authors[[i]]$comment[t])) {
         out[[i]][[tolower(t)]] <- unname(authors[[i]]$comment[t])
+        if(t == "ORCID") {
+          pattern <-  'https://orcid\\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]{1}'
+          if(!grepl(pattern, out[[i]][[tolower(t)]])) {
+            orcid <- out[[i]][[tolower(t)]]
+            out[[i]][[tolower(t)]] <- paste0("https://orcid.org/", orcid)
+            if(!grepl(pattern, out[[i]][[tolower(t)]])) {
+              warning("ORCID ", orcid, " has invalid format!")
+              out[[i]][[tolower(t)]] <- orcid
+            }
+          }
+        }
       }
     }
     return(out)
@@ -112,8 +123,17 @@ r2cff <- function(descriptionFile = "DESCRIPTION", export = FALSE) {
   # add URLs
   cff <- c(cff, .urls(d))
 
+  # fix format issue with keywords
+  if(length(cff$keywords) == 1) {
+    cff$keywords <- c(cff$keywords, "DUMMYKEYWORD")
+  }
+
   # convert to YAML format
   out <- yaml::as.yaml(cff)
+
+  # remove dummykeyword used to force keywords entries
+  # into array structure (as defined in CFF format)
+  out <- sub("- DUMMYKEYWORD\n","",out)
   if (isTRUE(export) && !is.null(folder)) {
     cffFile <- file.path(folder, "CITATION.cff")
     if (file.exists(cffFile)) {

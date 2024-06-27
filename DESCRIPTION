@@ -1,8 +1,8 @@
 Package: citation
 Type: Package
 Title: Software Citation Tools
-Version: 0.11.2
-Date: 2024-05-22
+Version: 0.11.3
+Date: 2024-06-27
 Authors@R: c(
     person("Jan Philipp", "Dietrich", email = "dietrich@pik-potsdam.de", 
     comment = c(affiliation = "Potsdam Institute for Climate Impact Research", ORCID = "0000-0002-4309-6431"), role = c("aut","cre")),
