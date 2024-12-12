@@ -2,8 +2,8 @@ cff-version: 1.2.0
 message: If you use this software, please cite it using the metadata from this file.
 type: software
 title: 'citation: Software Citation Tools'
-version: 0.11.3
-date-released: '2024-06-27'
+version: 0.12.0
+date-released: '2024-12-12'
 abstract: A collection of functions to extract citation information from 'R' packages
   and to deal with files in 'citation file format' (<https://citation-file-format.github.io/>),
   extending the functionality already provided by the citation() function in the 'utils'

@@ -8,24 +8,27 @@
 #' @export
 
 cff2bibentry <- function(x) {
-  if(is.null(x)) return(x)
-  if(is.character(x) && file.exists(x)) x <- read_cff(x)
-  #convert authors
+  if (is.null(x)) return(x)
+  if (is.character(x) && file.exists(x)) x <- read_cff(x)
+  # convert authors
   authors <- list()
-  for(i in 1:length(x$authors)) {
-    authors[[i]] <- person(given=x$authors[[i]][["given-names"]],
-                             family=x$authors[[i]][["family-names"]],
-                             email=x$authors[[i]][["email"]])
+  for (i in seq_along(x$authors)) {
+    authors[[i]] <- person(given = x$authors[[i]][["given-names"]],
+                           family = x$authors[[i]][["family-names"]],
+                           email = x$authors[[i]][["email"]])
   }
   x$authors <- do.call(c, authors)
-  if(!is.null(x$version)) x$title <-paste(x$title,"- Version",x$version)
+  if (!is.null(x$version)) {
+    x$note <- paste("Version:", x$version)
+  }
 
-  bibentry(bibtype="Misc",
-           title = x$title,
-           author = x$authors,
-           doi = x$doi,
-           date = x$`date-released`,
-           year = format(as.Date(x$`date-released`),"%Y"),
-           url=x$url)
-
+  out <- bibentry(bibtype = "Misc",
+                  title = x$title,
+                  author = x$authors,
+                  doi = x$doi,
+                  date = x$`date-released`,
+                  year = format(as.Date(x$`date-released`), "%Y"),
+                  url = unique(c(x$url, x$`repository-code`)),
+                  note = x$note)
+  return(out)
 }
