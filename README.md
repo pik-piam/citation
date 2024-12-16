@@ -38,7 +38,7 @@ In case of questions / problems please contact Jan Philipp Dietrich <dietrich@pi
 
 To cite package **citation** in publications use:
 
-Dietrich J, Leoncio W (2024). “citation: Software Citation Tools.” doi:10.5281/zenodo.3813429 <https://doi.org/10.5281/zenodo.3813429>, Version: 0.12.0, <https://github.com/pik-piam/citation>.
+Dietrich J, Leoncio W (2024). "citation: Software Citation Tools." doi:10.5281/zenodo.3813429 <https://doi.org/10.5281/zenodo.3813429>, Version: 0.12.0, <https://github.com/pik-piam/citation>.
 
 A BibTeX entry for LaTeX users is
 
@@ -47,7 +47,7 @@ A BibTeX entry for LaTeX users is
   title = {citation: Software Citation Tools},
   author = {Jan Philipp Dietrich and Waldir Leoncio},
   doi = {10.5281/zenodo.3813429},
-  date = {2024-12-12},
+  date = {2024-12-16},
   year = {2024},
   url = {https://github.com/pik-piam/citation},
   note = {Version: 0.12.0},
