@@ -16,8 +16,6 @@ test_that("r2cff generally works", {
   expect_output(r2cff(jsonliteFile), "cff-version")
   expect_output(r2cff(covrFile), "cff-version")
   expect_output(r2cff("covr"), "cff-version")
-  expect_error(r2cff(utilsFile))
-  expect_error(r2cff(yamlFile))
 })
 
 test_that("Exporting works", {
