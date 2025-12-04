@@ -1,4 +1,4 @@
-test_that("r2cff generally works", {
+test_that("cff2r generally works", {
   citationFile <- system.file("CFF-CITATION.cff", package = "citation")
   testthat::skip_if(!file.exists(citationFile))
   tempPath <- withr::local_tempdir()
