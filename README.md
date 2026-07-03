@@ -1,6 +1,6 @@
 # Software Citation Tools
 
-R package **citation**, version **0.12.2**
+R package **citation**, version **0.13.0**
 
 [![CRAN status](https://www.r-pkg.org/badges/version/citation)](https://cran.r-project.org/package=citation) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3813429.svg)](https://doi.org/10.5281/zenodo.3813429) [![R build status](https://github.com/pik-piam/citation/workflows/check/badge.svg)](https://github.com/pik-piam/citation/actions) [![codecov](https://codecov.io/gh/pik-piam/citation/branch/master/graph/badge.svg)](https://app.codecov.io/gh/pik-piam/citation) [![r-universe](https://pik-piam.r-universe.dev/badges/citation)](https://pik-piam.r-universe.dev/builds)
 
@@ -20,13 +20,13 @@ The additional repository can be made available permanently by adding the line a
 
 After that the most recent version of the package can be installed using `install.packages`:
 
-```r 
+```r
 install.packages("citation")
 ```
 
 Package updates can be installed using `update.packages` (make sure that the additional repository has been added before running that command):
 
-```r 
+```r
 update.packages()
 ```
 
@@ -38,7 +38,7 @@ In case of questions / problems please contact Jan Philipp Dietrich <dietrich@pi
 
 To cite package **citation** in publications use:
 
-Dietrich J, Leoncio W (2025). "citation: Software Citation Tools." doi:10.5281/zenodo.3813429 <https://doi.org/10.5281/zenodo.3813429>, Version: 0.12.2, <https://github.com/pik-piam/citation>.
+Dietrich J, Leoncio W (2026). "citation: Software Citation Tools." doi:10.5281/zenodo.3813429 <https://doi.org/10.5281/zenodo.3813429>, Version: 0.13.0, <https://github.com/pik-piam/citation>.
 
 A BibTeX entry for LaTeX users is
 
@@ -47,9 +47,9 @@ A BibTeX entry for LaTeX users is
   title = {citation: Software Citation Tools},
   author = {Jan Philipp Dietrich and Waldir Leoncio},
   doi = {10.5281/zenodo.3813429},
-  date = {2025-12-04},
-  year = {2025},
+  date = {2026-07-03},
+  year = {2026},
   url = {https://github.com/pik-piam/citation},
-  note = {Version: 0.12.2},
+  note = {Version: 0.13.0},
 }
 ```

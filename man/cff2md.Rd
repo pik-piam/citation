@@ -4,10 +4,15 @@
 \alias{cff2md}
 \title{cff2md}
 \usage{
-cff2md(x)
+cff2md(x, headingLevel = 2)
 }
 \arguments{
 \item{x}{path to citation file or read in citation in citation file format}
+
+\item{headingLevel}{integer (1–6); controls the Markdown heading level used
+for the entry title. Default is 2 (i.e. \code{##}). Use a higher value
+when embedding records inside a larger document with its own section
+headings.}
 }
 \description{
 Creates a summary of the CFF content in markdown format. This

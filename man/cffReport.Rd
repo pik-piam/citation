@@ -4,7 +4,7 @@
 \alias{cffReport}
 \title{cffReport}
 \usage{
-cffReport(repos, file = NULL, sortBy = "title")
+cffReport(repos, file = NULL, sortBy = "title", headingLevel = 2)
 }
 \arguments{
 \item{repos}{character vector of repository urls or links to CITATION.cff
@@ -14,13 +14,19 @@ files to be scanned}
 NULL the report will be directly returned by the function.}
 
 \item{sortBy}{category by which the report should sort its entries}
+
+\item{headingLevel}{integer (1–6); Markdown heading level for individual
+entry titles passed through to \code{\link{cff2md}}. Default is 2
+(\code{##}). Increase when embedding the output inside a larger document.}
 }
 \value{
 the report in markdown format
 }
 \description{
 Creates a report in markdown format for a provided list of repositories
-and or CITATION.cff files.
+and or CITATION.cff files. The report starts with a compact summary table
+followed by full per-entry records, and ends with a section listing any
+repositories for which no \code{CITATION.cff} was found.
 }
 \author{
 Jan Philipp Dietrich

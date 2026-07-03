@@ -22,13 +22,15 @@ cff2bibentry <- function(x) {
     x$note <- paste("Version:", x$version)
   }
 
+  year <- if (!is.null(x$`date-released`)) format(as.Date(x$`date-released`), "%Y") else NULL
+
   out <- bibentry(bibtype = "Misc",
                   title = x$title,
                   author = x$authors,
                   doi = x$doi,
                   date = x$`date-released`,
-                  year = format(as.Date(x$`date-released`), "%Y"),
-                  url = unique(c(x$url, x$`repository-code`)),
+                  year = year,
+                  url = x$`repository-code`,
                   note = x$note)
   return(out)
 }

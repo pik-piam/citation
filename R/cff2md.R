@@ -4,11 +4,15 @@
 #' can be useful for instance to create software reports.
 #'
 #' @param x path to citation file or read in citation in citation file format
+#' @param headingLevel integer (1–6); controls the Markdown heading level used
+#'   for the entry title. Default is 2 (i.e. \code{##}). Use a higher value
+#'   when embedding records inside a larger document with its own section
+#'   headings.
 #' @author Jan Philipp Dietrich
 #' @importFrom utils person bibentry
 #' @export
 
-cff2md <- function(x) {
+cff2md <- function(x, headingLevel = 2) {
   if (is.null(x)) return(x)
   if (is.character(x) && (file.exists(x) || substring(x, 1, 4) == "http")) x <- read_cff(x)
 
@@ -58,16 +62,36 @@ cff2md <- function(x) {
     return(paste(out, collapse = ""))
   }
 
-  out <- .returnMarkdown(x, title = c("## ", "\n\n"),
-                         abstract = c("", "\n\n"),
-                         authors = c("Authors: ", "\n\n"),
-                         affiliations = c("Affiliations: ", "\n\n"),
-                         version = "Version: ",
-                         "date-released" = c(" (", ")"),
-                         license = c(" | License: ", "\n\n"),
-                         type =  c("Type: ", "\n\n"),
-                         keywords = c("Keywords: ", "\n\n"),
-                         "repository-code" = c("Code Repository: ", "\n\n"),
-                         citation = "Citation: ")
+  heading <- paste0(strrep("#", headingLevel), " ")
+
+  # Include type only when it conveys information beyond the obvious (software repo list)
+  typeField <- if (!is.null(x$type) && !identical(x$type, "software")) {
+    list(type = c("Type: ", "\n\n"))
+  } else {
+    list()
+  }
+
+  # Include website URL only when present and distinct from repository-code
+  urlField <- if (!is.null(x$url) && !identical(x$url, x$`repository-code`)) {
+    list(url = c("Website: ", "\n\n"))
+  } else {
+    list()
+  }
+
+  out <- do.call(.returnMarkdown, c(
+    list(x),
+    list(title        = c(heading, "\n\n"),
+         abstract     = c("", "\n\n"),
+         authors      = c("Authors: ", "\n\n"),
+         affiliations = c("Affiliations: ", "\n\n"),
+         version      = "Version: ",
+         "date-released" = c(" (", ")"),
+         license      = c(" | License: ", "\n\n")),
+    typeField,
+    list(keywords     = c("Keywords: ", "\n\n")),
+    urlField,
+    list("repository-code" = c("Code Repository: ", "\n\n"),
+         citation     = "Citation: ")
+  ))
   return(out)
 }
