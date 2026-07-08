@@ -1,0 +1,20 @@
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/LICENSE-text.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/reference/cff2bibentry.html</loc></url>
+<url><loc>/reference/cff2md.html</loc></url>
+<url><loc>/reference/cff2r.html</loc></url>
+<url><loc>/reference/cff2zenodo.html</loc></url>
+<url><loc>/reference/cffReport.html</loc></url>
+<url><loc>/reference/citation-package.html</loc></url>
+<url><loc>/reference/citation2zenodo.html</loc></url>
+<url><loc>/reference/citation_doi.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/package2zenodo.html</loc></url>
+<url><loc>/reference/r2cff.html</loc></url>
+<url><loc>/reference/read_cff.html</loc></url>
+<url><loc>/reference/scanRepos.html</loc></url>
+</urlset>
+

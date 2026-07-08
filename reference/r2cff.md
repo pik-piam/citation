@@ -1,0 +1,87 @@
+# Convert from R DESCRIPTION into CFF
+
+Converts an R package DESCRIPTION file to Citation File Format
+
+## Usage
+
+``` r
+r2cff(descriptionFile = "DESCRIPTION", export = FALSE)
+```
+
+## Arguments
+
+- descriptionFile:
+
+  either the path to a DESCIPTION file, the path to a main folder of a
+  package (containing a DESCRIPTION file) or the name of a package.
+
+- export:
+
+  if \`TRUE\`, the output is saved as CITATION.cff in the folder of the
+  DESCRIPTION file.
+
+## Value
+
+The package's DESCRIPTION file converted to CFF
+
+## Details
+
+CFF is a standard format for the citation of software proposed by
+Stephan Druskat et. al. (see references below). CFF-compliant files are
+stored in files named CITATION.cff.
+
+CITATION.cff files are plain text files with human- and machine-readable
+citation information for software. Code developers can include them in
+their repositories to let others know how to correctly cite their
+software.
+
+## References
+
+Druskat S., Spaaks J.H., Chue Hong N., Haines R., Baker J. (2019).
+Citation File Format (CFF) (version 1.1.0). DOI:
+http://doi.org/10.5281/zenodo.1003149
+
+https://www.software.ac.uk/blog/2017-12-12-standard-format-citation-files
+https://citation-file-format.github.io
+https://github.com/citation-file-format/citation-file-format/blob/master/README.md
+https://citation-file-format.github.io/cff-initializer-javascript/
+
+## See also
+
+cff2r
+
+## Author
+
+Waldir Leoncio, Jan Philipp Dietrich
+
+## Examples
+
+``` r
+r2cff("citation")
+#> cff-version: 1.2.0
+#> message: If you use this software, please cite it using the metadata from this file.
+#> type: software
+#> title: 'citation: Software Citation Tools'
+#> version: 0.13.1
+#> date-released: '2026-07-08'
+#> abstract: A collection of functions to extract citation information from 'R' packages
+#>   and to deal with files in 'citation file format' (<https://citation-file-format.github.io/>),
+#>   extending the functionality already provided by the citation() function in the 'utils'
+#>   package.
+#> authors:
+#> - family-names: Dietrich
+#>   given-names: Jan Philipp
+#>   email: dietrich@pik-potsdam.de
+#>   orcid: https://orcid.org/0000-0002-4309-6431
+#>   affiliation: Potsdam Institute for Climate Impact Research
+#> - family-names: Leoncio
+#>   given-names: Waldir
+#>   email: w.l.netto@medisin.uio.no
+#>   affiliation: University of Oslo
+#> license: BSD-2-Clause
+#> keywords:
+#> - tool
+#> repository-code: https://github.com/pik-piam/citation
+#> doi: 10.5281/zenodo.3813429
+#> 
+```
